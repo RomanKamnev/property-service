@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="04-create-property-images" author="your-name">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="property_images"/>
+            </not>
+        </preConditions>
+        <createTable tableName="property_images">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="property_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image_url" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="04-add-fk-constraint" author="roman (generated)">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_property_images_property"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint
+                baseTableName="property_images"
+                baseColumnNames="property_id"
+                referencedTableName="properties"
+                referencedColumnNames="id"
+                constraintName="fk_property_images_property"
+                onDelete="CASCADE"/>
+    </changeSet>
+</databaseChangeLog>
