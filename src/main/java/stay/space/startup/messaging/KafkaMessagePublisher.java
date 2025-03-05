@@ -12,16 +12,16 @@ import java.util.concurrent.CompletableFuture;
 @Slf4j
 public class KafkaMessagePublisher {
 
-    private final KafkaTemplate<String, Customer> template;
+    private final KafkaTemplate<String, Property> template;
 
-    public KafkaMessagePublisher(KafkaTemplate<String, Customer> template) {
+    public KafkaMessagePublisher(KafkaTemplate<String, Property> template) {
         this.template = template;
     }
 
     @TransactionalEventListener(fallbackExecution = true)
-    public void sendEventsToTopic(Customer message) {
+    public void sendEventsToTopic(Property message) {
         try {
-            CompletableFuture<SendResult<String, Customer>> future = template.send("customers", message);
+            CompletableFuture<SendResult<String, Property>> future = template.send("customers", message);
             future.whenComplete((result, ex) -> {
                 if (ex == null) {
                     log.info("Sent message=[" + message.toString() +

@@ -10,7 +10,7 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.serializer.JsonSerializer;
-import stay.space.startup.messaging.Customer;
+import stay.space.startup.messaging.Property;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +20,7 @@ public class KafkaProducerConfig {
 
     @Bean
     public NewTopic createTopic(){
-        return new NewTopic("customers", 3, (short) 1);
+        return new NewTopic("properties", 3, (short) 1);
     }
 
     @Bean
@@ -36,13 +36,12 @@ public class KafkaProducerConfig {
     }
 
     @Bean
-    public ProducerFactory<String, Customer> producerFactory(){
+    public ProducerFactory<String, Property> producerFactory(){
         return new DefaultKafkaProducerFactory<>(producerConfig());
     }
 
     @Bean
-    public KafkaTemplate<String, Customer> kafkaTemplate(){
+    public KafkaTemplate<String, Property> kafkaTemplate(){
         return new KafkaTemplate<>(producerFactory());
     }
-
 }

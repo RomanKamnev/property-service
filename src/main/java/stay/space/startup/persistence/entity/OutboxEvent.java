@@ -37,7 +37,7 @@ public class OutboxEvent {
     private String payload;
 
     @Enumerated(EnumType.STRING)
-    private OutboxStatus status = OutboxStatus.PENDING; // PENDING, PROCESSED
+    private OutboxStatus status = OutboxStatus.PENDING;
 
     private Instant createdAt = Instant.now();
 }

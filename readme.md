@@ -35,3 +35,5 @@ eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjoiUk9MRV9BRE1JTixST0xFX1VTRVI
 }
 
 Use Postman Bearer Token(Not JWT Bearer for testing)
+
+For git repositories use context: github-property

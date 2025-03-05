@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer {
+public class Property {
     private String propertyName;
     private String address;
     @Nullable
